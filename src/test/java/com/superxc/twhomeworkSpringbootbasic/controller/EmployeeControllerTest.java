@@ -25,6 +25,10 @@ public class EmployeeControllerTest {
     
     private MockMvc mvc;
 
+    /**
+     * 单元测试之间互相影响，无法进行有效测试
+     */
+
     @Ignore
     @Before
     public void setUp() {

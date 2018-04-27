@@ -68,4 +68,14 @@ public class EmployeeController {
         employees.put(employeeNew.getId(), employeeNew);
         return employeeNew;
     }
+
+    /**
+     * Get an employee
+     * @param id employee id
+     * @return employee
+     */
+    @GetMapping(value = "/employees/{id}")
+    public Employee get(@PathVariable Long id) {
+        return employees.get(id);
+    }
 }
