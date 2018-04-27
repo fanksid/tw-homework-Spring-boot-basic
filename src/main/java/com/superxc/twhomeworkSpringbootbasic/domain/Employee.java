@@ -10,11 +10,20 @@ public class Employee {
 
     private String gender;
 
+    private static Long firstAvailableId = 0L;
+
     public Employee() {
     }
 
-    public Employee(Long id, String name, Integer age, String gender) {
-        this.id = id;
+    /**
+     * Generate id for employee
+     */
+    public void generateId() {
+        id = firstAvailableId++;
+    }
+
+    public Employee(String name, Integer age, String gender) {
+        generateId();
         this.name = name;
         this.age = age;
         this.gender = gender;

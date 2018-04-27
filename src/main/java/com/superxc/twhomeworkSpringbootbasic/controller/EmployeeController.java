@@ -31,6 +31,12 @@ public class EmployeeController {
      */
     @PostMapping(value = "/employees")
     public Employee add(@ModelAttribute Employee employee) {
+        // do not allow custom employee id
+        if (employee.getId() != null) {
+            return null;
+        }
+
+        employee.generateId();
         employees.put(employee.getId(), employee);
         return employee;
     }
