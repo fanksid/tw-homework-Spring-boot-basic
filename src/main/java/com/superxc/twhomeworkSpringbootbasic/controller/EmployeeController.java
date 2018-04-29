@@ -11,6 +11,7 @@ import java.util.TreeMap;
 @RestController
 public class EmployeeController {
 
+    public static final String URL_BASE = "/employees";
     // The reason to use TreeMap is that want employees sorted by ID
     // Map<ID, Employee>
     private Map<Long, Employee> employees = new TreeMap<>();
@@ -19,7 +20,7 @@ public class EmployeeController {
      * Get employees list
      * @return employees list
      */
-    @GetMapping(value = "/employees")
+    @GetMapping(value = URL_BASE)
     public List<Employee> list() {
         return new ArrayList<>(employees.values());
     }
@@ -29,7 +30,7 @@ public class EmployeeController {
      * @param employee want to added
      * @return added employee
      */
-    @PostMapping(value = "/employees")
+    @PostMapping(value = URL_BASE)
     public Employee add(@ModelAttribute Employee employee) {
         // do not allow custom employee id
         if (employee.getId() != null) {
@@ -46,7 +47,7 @@ public class EmployeeController {
      * @param id employee id
      * @return deleted employee
      */
-    @DeleteMapping(value = "/employees/{id}")
+    @DeleteMapping(value = URL_BASE + "/{id}")
     public Employee delete(@PathVariable Long id) {
         Employee employee = employees.get(id);
         employees.remove(id);
@@ -59,7 +60,7 @@ public class EmployeeController {
      * @param employeeNew new employee data
      * @return updated employee
      */
-    @PutMapping(value = "/employees/{id}")
+    @PutMapping(value = URL_BASE + "/{id}")
     public Employee update(@PathVariable Long id, @ModelAttribute Employee employeeNew) {
         Employee employeeOld = employees.remove(employeeNew.getId());
         if (employeeOld == null) {
@@ -74,7 +75,7 @@ public class EmployeeController {
      * @param id employee id
      * @return employee
      */
-    @GetMapping(value = "/employees/{id}")
+    @GetMapping(value = URL_BASE + "/{id}")
     public Employee get(@PathVariable Long id) {
         return employees.get(id);
     }
